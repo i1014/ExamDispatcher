@@ -1,8 +1,25 @@
 ﻿<Window x:Class="ExamDispatcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Exam Dispatcher" Height="350" Width="525"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DesignHeight="300"
+        d:DesignWidth="300"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d">
+    <DockPanel LastChildFill="True">
+        <DockPanel Width="75"
+                   DockPanel.Dock="Left"
+                   LastChildFill="False">
+            <Button DockPanel.Dock="Top" Content="Host Exam"/>
+            <Button DockPanel.Dock="Top" Content="Create Exam"/>
+            <Button DockPanel.Dock="Top" Content="Edit Exam"/>
+            <Button DockPanel.Dock="Bottom" Content="Exit"/>
+        </DockPanel>
+
+        <ContentControl Content="{Binding CurrentViewModel}" />
+
+    </DockPanel>
 </Window>
