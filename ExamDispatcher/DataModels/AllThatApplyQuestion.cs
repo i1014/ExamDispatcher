@@ -2,7 +2,7 @@
 
 namespace DataModels
 {
-    public class AllThatApplyQuestion : Question
+    public class AllThatApplyQuestion : BaseQuestion
     {
         public string Question { get; private set; }
         public List<string> OptionsList { get; private set; }
@@ -23,6 +23,11 @@ namespace DataModels
             OptionsList = optionsList;
             AnswerList = answerList;
             Type = QuestionType.AllThatApply;
+        }
+
+        public string GetQuestionToString()
+        {
+            return Question;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿
+using System;
+
 namespace DataModels
 {
-    public class ShortAnswerQuestion : Question
+    public class ShortAnswerQuestion : BaseQuestion
     {
         public string Question { get; private set; }
         public string Answer { get; private set; }
@@ -19,6 +21,11 @@ namespace DataModels
             Question = question;
             Answer = answer;
             Type = QuestionType.ShortAnswer;
+        }
+
+        public string GetQuestionToString()
+        {
+            return Question;
         }
     }
 }

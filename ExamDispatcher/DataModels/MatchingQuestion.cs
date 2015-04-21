@@ -2,7 +2,7 @@
 
 namespace DataModels
 {
-    public class MatchingQuestion : Question
+    public class MatchingQuestion : BaseQuestion
     {
         public string Question { get; private set; }
         public List<string> OptionsList { get; private set; }
@@ -23,6 +23,11 @@ namespace DataModels
             OptionsList = optionsList;
             Answer = answer;
             Type = QuestionType.Matching;
+        }
+
+        public string GetQuestionToString()
+        {
+            return Question;
         }
     }
 }

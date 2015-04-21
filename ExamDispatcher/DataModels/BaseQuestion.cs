@@ -1,7 +1,7 @@
 ﻿
 namespace DataModels
 {
-    public class Question
+    public class BaseQuestion
     {
         
     }

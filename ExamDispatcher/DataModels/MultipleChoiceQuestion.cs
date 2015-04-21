@@ -1,7 +1,7 @@
 ﻿
 namespace DataModels
 {
-    public class MultipleChoiceQuestion : Question
+    public class MultipleChoiceQuestion : BaseQuestion
     {
         public string Question { get; private set; }
         public string Answer { get; private set; }
@@ -19,6 +19,11 @@ namespace DataModels
             Question = question;
             Answer = answer;
             Type = QuestionType.MultipleChoice;
+        }
+
+        public string GetQuestionToString()
+        {
+            return Question;
         }
     }
 }
