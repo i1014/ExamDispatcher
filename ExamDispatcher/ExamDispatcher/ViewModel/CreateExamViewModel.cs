@@ -1,15 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 using DataModels;
+using ExamDispatcher.Model;
+using ExamDispatcher.Views;
+using Microsoft.Win32;
+using Utilities;
 
 namespace ExamDispatcher.ViewModel
 {
     public class CreateExamViewModel : ViewModelBase
     {
 
+        #region Properties and Fields
         private string _ExamName;
         public string ExamName
         {
@@ -20,6 +28,19 @@ namespace ExamDispatcher.ViewModel
                     return;
                 _ExamName = value;
                 RaisePropertyChanged("ExamName");
+            }
+        }
+
+        private Guid _ExamGuid;
+        public Guid ExamGuid
+        {
+            get { return _ExamGuid; }
+            set
+            {
+                if (_ExamGuid == value)
+                    return;
+                _ExamGuid = value;
+                RaisePropertyChanged("ExamGuid");
             }
         }
 
@@ -47,13 +68,15 @@ namespace ExamDispatcher.ViewModel
 
                 _SelectedItem = value;
                 RaisePropertyChanged("SelectedItem");
-
-                // selection changed - do something special
             }
         }
+        #endregion
+
+        #region ViewModel Registration
+        readonly static AddQuestionViewModel _AddQuestionViewModel = new AddQuestionViewModel();
+        #endregion
 
         #region Commands
-        
         public ICommand EditCommand { get; private set; }
         private void ExecuteEditCommand()
         {
@@ -63,20 +86,48 @@ namespace ExamDispatcher.ViewModel
         public ICommand AddCommand { get; private set; }
         private void ExecuteAddCommand()
         {
-            var sa = new ShortAnswerQuestion(ExamName, "A");
-            _Questions.Add(sa);
+            var w = new Window {Content = new AddQuestionViewModel()};
+            w.Height = 525;
+            w.Width = 320;
+            DataStore.WindowRegistration = w;
+            w.ShowDialog();
+
+            var tmp = DataStore.AddedQuestion;
+            var error = DataStore.ErrorCode;
+
+            if (error == 0)
+            {
+                if(tmp != null)
+                    Questions.Add(tmp);
+            }
+            else
+            {
+                //TODO Alert user with dialog and error code translation.
+            }
+
         }
 
         public ICommand RemoveCommand { get; private set; }
         private void ExecuteRemoveCommand()
         {
-
+            Questions.Remove(SelectedItem);
         }
 
         public ICommand SaveCommand { get; private set; }
         private void ExecuteSaveCommand()
         {
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog.FileName = ExamName;
+            saveFileDialog.DefaultExt = ".bin";
 
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var fileName = saveFileDialog.FileName;
+                var exam = new Exam(ExamName, Guid.NewGuid(), Questions.ToList());
+                var serializer = new ObjectSerialization<Exam>(exam, fileName);
+                serializer.Serialize();
+            }
         }
         #endregion
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace DataModels
 {
+    [Serializable]
     public class Exam
     {
         public string ExamTitle { get; private set; }

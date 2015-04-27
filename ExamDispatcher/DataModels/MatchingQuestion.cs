@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DataModels
 {
+    [Serializable]
     public class MatchingQuestion : BaseQuestion
     {
         public string Question { get; private set; }

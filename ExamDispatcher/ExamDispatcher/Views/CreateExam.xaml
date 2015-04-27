@@ -6,7 +6,8 @@
              mc:Ignorable="d" 
              xmlns:UI="clr-namespace:ExamDispatcher.ViewModel"
              d:DataContext="{d:DesignInstance Type=UI:CreateExamViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="300" d:DesignWidth="400">
+             d:DesignHeight="300" d:DesignWidth="400
+             ">
     <DockPanel Margin="10">
         <DockPanel LastChildFill="False" Dock="Top" >
             <Label DockPanel.Dock="Left">Exam Name</Label>
@@ -17,6 +18,9 @@
         </DockPanel>
         <DockPanel LastChildFill="False">
             <Label DockPanel.Dock="Top">Exam Contents</Label>
+
+            
+
             <ListBox SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Questions}"  DockPanel.Dock="Left" Width="300">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

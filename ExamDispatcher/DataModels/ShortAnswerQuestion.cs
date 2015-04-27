@@ -3,6 +3,7 @@ using System;
 
 namespace DataModels
 {
+    [Serializable]
     public class ShortAnswerQuestion : BaseQuestion
     {
         public string Question { get; private set; }

@@ -9,5 +9,14 @@
         <DataTemplate DataType="{x:Type vm:HostExamViewModel}">
             <views:HostExam />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddQuestionViewModel}">
+            <views:AddQuestion />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ShortAnswerViewModel}">
+            <views:ShortAnswerQuestion />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MultipleChoiceViewModel}">
+            <views:MultipleChoiceQuestion />
+        </DataTemplate>
     </Application.Resources>
 </Application>

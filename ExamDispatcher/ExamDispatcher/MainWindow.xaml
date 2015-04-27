@@ -11,10 +11,11 @@
     <DockPanel LastChildFill="True">
         <DockPanel Width="75"
                    DockPanel.Dock="Left"
-                   LastChildFill="False">
+                   LastChildFill="False"
+                   Margin="10">
             <Button Command="{Binding HostExamCommand}" DockPanel.Dock="Top" Content="Host Exam"/>
             <Button Command="{Binding CreateExamCommand}"  DockPanel.Dock="Top" Content="Create Exam"/>
-            <Button DockPanel.Dock="Top" Content="Edit Exam"/>
+            <Button Command="{Binding EditExamCommand}" DockPanel.Dock="Top" Content="Edit Exam"/>
             <Button DockPanel.Dock="Bottom" Content="Exit"/>
         </DockPanel>
 
