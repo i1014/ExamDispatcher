@@ -7,8 +7,17 @@ namespace Webservice
     using System;
     using Nancy.Hosting.Self;
 
-    class Program
+    public class Program
     {
+        public static void Start()
+        {
+            var uri = new Uri("http://localhost:3579");
+
+            var host = new NancyHost(uri);
+
+            host.Start();
+        }
+
         static void Main(string[] args)
         {
             var uri =

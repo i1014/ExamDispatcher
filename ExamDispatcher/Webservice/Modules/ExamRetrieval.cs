@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Nancy;
 using Nancy.ModelBinding;
-using DataModels;
 using DataModels.Questions;
 using ExamSandbox;
 
@@ -28,13 +24,15 @@ namespace Webservice.Modules
 
             Get["/ExamRetrieval/Partial"] = _ =>
             {
+
+                //TODO I'm dot sure what to return for a partial test.
                 return null;
             };
         }
 
         private Exam GetExam(Guid id)
         {
-            var exam = Sandbox.GetExamById(id);
+            var exam = Sandbox.GetActiveExamById(id);
 
             return exam;
         }

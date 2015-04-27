@@ -70,7 +70,23 @@ namespace ExamDispatcher.ViewModel
         public ICommand HostExamCommand { get; private set; }
         private void ExecuteHostCommand()
         {
-            CurrentViewModel = MainViewModel._HostExamViewModel;
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.DefaultExt = ".bin";
+            var viewModel = new HostExamViewModel();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var fileName = openFileDialog.FileName;
+
+                var serializer = new ObjectSerialization<Exam>(null, fileName);
+                var exam = serializer.DeSerialize();
+
+                viewModel.Exam = exam;
+
+                CurrentViewModel = viewModel;
+
+            }
         }
         #endregion
 

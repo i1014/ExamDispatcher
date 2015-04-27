@@ -161,9 +161,17 @@
       <Project>{68773a62-b7bc-494e-aa5d-3d6a88ff94ad}</Project>
       <Name>DataModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExamSandbox\ExamSandbox.csproj">
+      <Project>{cf8616ac-9895-47cf-8596-2f08ac28eed4}</Project>
+      <Name>ExamSandbox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{d1047371-d916-4754-9f10-c1ea2b1042d1}</Project>
       <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webservice\Webservice.csproj">
+      <Project>{35460aa4-b94a-4b64-9418-7243ec3d2f01}</Project>
+      <Name>Webservice</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
