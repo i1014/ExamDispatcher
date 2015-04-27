@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DataModels;
+using DataModels.Questions;
 using ExamDispatcher.Model;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -24,6 +25,19 @@ namespace ExamDispatcher.ViewModel
                     return;
                 _Question = value;
                 RaisePropertyChanged("Question");
+            }
+        }
+
+        private Guid _QuestionGuid;
+        public Guid QuestionGuid
+        {
+            get { return _QuestionGuid; }
+            set
+            {
+                if (_QuestionGuid == value)
+                    return;
+                _QuestionGuid = value;
+                RaisePropertyChanged("QuestionGuid");
             }
         }
 
@@ -129,12 +143,12 @@ namespace ExamDispatcher.ViewModel
             SetAnswerCommand = new RelayCommand(() => ExecuteSetAnswerCommand());
         }
 
-        public override DataModels.BaseQuestion GetQuestion()
+        public override BaseQuestion GetQuestion()
         {
             if (Answer == "")
                 DataStore.ErrorCode = 10;
 
-            var question = new MultipleChoiceQuestion(Question, Answer, Options.ToList());
+            var question = new MultipleChoiceQuestion(Question, QuestionGuid, Answer, Options.ToList());
 
             return question;
         }

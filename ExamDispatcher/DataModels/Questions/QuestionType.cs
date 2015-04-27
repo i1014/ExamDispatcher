@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace DataModels
+namespace DataModels.Questions
 {
     [Serializable]
     public enum QuestionType

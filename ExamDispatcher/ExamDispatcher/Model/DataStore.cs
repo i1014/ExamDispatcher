@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataModels;
+using DataModels.Questions;
 
 namespace ExamDispatcher.Model
 {

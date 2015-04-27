@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataModels
+namespace DataModels.Questions
 {
     [Serializable]
     public class Exam

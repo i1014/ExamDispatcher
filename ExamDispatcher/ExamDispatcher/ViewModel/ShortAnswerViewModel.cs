@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using DataModels;
+using DataModels.Questions;
 using ExamDispatcher.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -25,6 +26,19 @@ namespace ExamDispatcher.ViewModel
                     return;
                 _ExamQuestion = value;
                 RaisePropertyChanged("ExamQuestion");
+            }
+        }
+
+        private Guid _QuestionGuid;
+        public Guid QuestionGuid
+        {
+            get { return _QuestionGuid; }
+            set
+            {
+                if (_QuestionGuid == value)
+                    return;
+                _QuestionGuid = value;
+                RaisePropertyChanged("QuestionGuid");
             }
         }
 
@@ -49,7 +63,7 @@ namespace ExamDispatcher.ViewModel
 
         public override BaseQuestion GetQuestion()
         {
-            return new ShortAnswerQuestion(ExamQuestion, ExamAnswer);
+            return new ShortAnswerQuestion(ExamQuestion, QuestionGuid, ExamAnswer);
         }
     }
 }

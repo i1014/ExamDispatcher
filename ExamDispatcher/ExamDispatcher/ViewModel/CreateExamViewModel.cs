@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 using DataModels;
+using DataModels.Questions;
 using ExamDispatcher.Model;
 using ExamDispatcher.Views;
 using Microsoft.Win32;

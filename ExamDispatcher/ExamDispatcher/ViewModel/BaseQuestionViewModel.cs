@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModels;
+using DataModels.Questions;
 using GalaSoft.MvvmLight;
 
 namespace ExamDispatcher.ViewModel
