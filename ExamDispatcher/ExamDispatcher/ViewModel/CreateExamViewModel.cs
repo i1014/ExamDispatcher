@@ -125,7 +125,9 @@ namespace ExamDispatcher.ViewModel
             if (saveFileDialog.ShowDialog() == true)
             {
                 var fileName = saveFileDialog.FileName;
-                var exam = new Exam(ExamName, Guid.NewGuid(), Questions.ToList());
+                if (ExamGuid.Equals(new Guid("00000000-0000-0000-0000-000000000000")))
+                    ExamGuid = Guid.NewGuid();
+                var exam = new Exam(ExamName, ExamGuid, Questions.ToList());
                 var serializer = new ObjectSerialization<Exam>(exam, fileName);
                 serializer.Serialize();
             }

@@ -25,7 +25,7 @@ namespace DataModels.Questions
         public MultipleChoiceQuestion(string question, Guid questionGuid, string answer, List<MultipleChoiceOption> optionList )
         {
             Options = optionList;
-            QuestionGuid = QuestionGuid;
+            QuestionGuid = questionGuid;
             Question = question;
             Answer = answer;
             Type = QuestionType.MultipleChoice;

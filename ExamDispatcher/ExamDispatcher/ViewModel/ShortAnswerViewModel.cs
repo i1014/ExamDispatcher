@@ -63,6 +63,9 @@ namespace ExamDispatcher.ViewModel
 
         public override BaseQuestion GetQuestion()
         {
+            if (QuestionGuid.Equals(new Guid("00000000-0000-0000-0000-000000000000")))
+                QuestionGuid = Guid.NewGuid();
+
             return new ShortAnswerQuestion(ExamQuestion, QuestionGuid, ExamAnswer);
         }
     }

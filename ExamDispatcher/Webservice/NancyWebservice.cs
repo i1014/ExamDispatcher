@@ -1,21 +1,38 @@
 ﻿using System.Collections.Generic;
 using DataModels.Questions;
 using ExamSandbox;
+using Nancy;
 
 namespace Webservice
 {
     using System;
     using Nancy.Hosting.Self;
 
-    public class Program
+    public class NancyWebservice
     {
+        private static NancyHost HostedWebService;
+
         public static void Start()
         {
             var uri = new Uri("http://localhost:3579");
 
-            var host = new NancyHost(uri);
+            HostConfiguration hostConfiguration = new HostConfiguration()
+            {
+                UrlReservations = new UrlReservations() {CreateAutomatically = true}
+            };
+                
+            var HostedWebservice = new NancyHost(uri, new DefaultNancyBootstrapper(), hostConfiguration);
 
-            host.Start();
+
+
+           // NetAclChecker.AddAddress("http://+:3579/");
+
+            HostedWebservice.Start();
+        }
+
+        public static void Stop()
+        {
+            HostedWebService.Stop();
         }
 
         static void Main(string[] args)

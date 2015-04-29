@@ -39,6 +39,8 @@ namespace ExamDispatcher.ViewModel
         public ICommand CreateExamCommand { get; private set; }
         private void ExecuteCreateCommand()
         {
+            _CreateExamViewModel.ExamGuid = Guid.NewGuid();
+
             CurrentViewModel = MainViewModel._CreateExamViewModel;
         }
 
@@ -93,7 +95,7 @@ namespace ExamDispatcher.ViewModel
 
         public MainViewModel()
         {
-            CurrentViewModel = MainViewModel._HostExamViewModel;
+            CurrentViewModel = MainViewModel._CreateExamViewModel;
             CreateExamCommand = new RelayCommand(() => ExecuteCreateCommand());
             HostExamCommand = new RelayCommand(() => ExecuteHostCommand());
             EditExamCommand = new RelayCommand(() => ExecuteEditExamCommand());

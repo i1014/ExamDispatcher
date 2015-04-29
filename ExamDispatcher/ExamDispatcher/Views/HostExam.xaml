@@ -15,6 +15,7 @@
                 <Label Content="{Binding Exam.ExamTitle}"></Label>
                 <Label></Label>
             </StackPanel>
+            <Image Source="{Binding Image}"></Image>
         </DockPanel>
         
         

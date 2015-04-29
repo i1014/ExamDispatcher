@@ -133,7 +133,7 @@ namespace ExamDispatcher.ViewModel
             Answer = SelectedItem.Option;
         }
         #endregion
-
+        
         public MultipleChoiceViewModel()
         {
             _Options = new ObservableCollection<MultipleChoiceOption>();
@@ -147,6 +147,9 @@ namespace ExamDispatcher.ViewModel
         {
             if (Answer == "")
                 DataStore.ErrorCode = 10;
+
+            if (QuestionGuid.Equals(new Guid("00000000-0000-0000-0000-000000000000")))
+                QuestionGuid = Guid.NewGuid();
 
             var question = new MultipleChoiceQuestion(Question, QuestionGuid, Answer, Options.ToList());
 
