@@ -6,28 +6,25 @@
              mc:Ignorable="d" 
              xmlns:UI="clr-namespace:ExamDispatcher.ViewModel"
              d:DataContext="{d:DesignInstance Type=UI:CreateExamViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="300" d:DesignWidth="400
-             ">
+             d:DesignHeight="580" d:DesignWidth="820">
     <DockPanel Margin="10">
-        <DockPanel LastChildFill="False" Dock="Top" >
-            <Label DockPanel.Dock="Left">Exam Name</Label>
-            <TextBox MaxWidth="300"
-                     MinWidth="200"
-                     DockPanel.Dock="Left"
-                     Text="{Binding ExamName}"></TextBox>
-        </DockPanel>
-        <DockPanel LastChildFill="False">
-            <Label DockPanel.Dock="Top">Exam Contents</Label>
+        <DockPanel LastChildFill="True">
+            <DockPanel Width="150" DockPanel.Dock="Left">
+                <Label DockPanel.Dock="Top">Exam Contents</Label>
+                <Button Content="Edit Exam Settings" DockPanel.Dock="Bottom"/>
+                <Button Content="Add Question" DockPanel.Dock="Bottom"/>
+                <ListBox SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Questions}"  DockPanel.Dock="Top" Width="150">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Question}" ></Label>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <UserControl DockPanel.Dock="Right">
 
-            
+            </UserControl>
 
-            <ListBox SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Questions}"  DockPanel.Dock="Left" Width="300">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Label Content="{Binding Question}" ></Label>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
             <DockPanel DockPanel.Dock="Right"
                        Width="75"
                        LastChildFill="False">

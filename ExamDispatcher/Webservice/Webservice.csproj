@@ -58,7 +58,6 @@
     <Compile Include="Modules\ExamRetrieval.cs" />
     <Compile Include="Modules\ExamSubmission.cs" />
     <Compile Include="NancyWebservice.cs" />
-    <Compile Include="NetAclChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

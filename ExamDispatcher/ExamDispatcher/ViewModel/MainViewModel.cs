@@ -28,6 +28,22 @@ namespace ExamDispatcher.ViewModel
                 RaisePropertyChanged("CurrentViewModel");
             }
         }
+
+        private ObservableCollection<Exam> _exams;
+        public ObservableCollection<Exam> Exams
+        {
+            get
+            {
+                return _exams;
+            }
+            set
+            {
+                if (_exams == value)
+                    return;
+                _exams = value;
+                RaisePropertyChanged("Exams");
+            }
+        }
         #endregion
 
         #region ViewModelRegistration
@@ -43,72 +59,15 @@ namespace ExamDispatcher.ViewModel
 
             CurrentViewModel = MainViewModel._CreateExamViewModel;
         }
-
-        public ICommand EditExamCommand { get; private set; }
-        private void ExecuteEditExamCommand()
-        {
-            var openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            openFileDialog.DefaultExt = ".bin";
-            var viewModel = new CreateExamViewModel();
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                var fileName = openFileDialog.FileName;
-
-                var serializer = new ObjectSerialization<Exam>(null, fileName);
-                var exam = serializer.DeSerialize();
-
-                viewModel.ExamName = exam.ExamTitle;
-                viewModel.Questions = new ObservableCollection<BaseQuestion>(exam.QuestionList);
-                viewModel.ExamGuid = exam.ExamId;
-
-                CurrentViewModel = viewModel;
-
-            }
-
-        }
-
-        public ICommand HostExamCommand { get; private set; }
-        private void ExecuteHostCommand()
-        {
-            var openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            openFileDialog.DefaultExt = ".bin";
-            var viewModel = new HostExamViewModel();
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                var fileName = openFileDialog.FileName;
-
-                var serializer = new ObjectSerialization<Exam>(null, fileName);
-                var exam = serializer.DeSerialize();
-
-                viewModel.Exam = exam;
-
-                CurrentViewModel = viewModel;
-
-            }
-        }
         #endregion
 
 
         public MainViewModel()
         {
             CurrentViewModel = MainViewModel._CreateExamViewModel;
+            Exams = new ObservableCollection<Exam>();
             CreateExamCommand = new RelayCommand(() => ExecuteCreateCommand());
-            HostExamCommand = new RelayCommand(() => ExecuteHostCommand());
-            EditExamCommand = new RelayCommand(() => ExecuteEditExamCommand());
 
-
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
         }
 
 

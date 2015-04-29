@@ -30,7 +30,7 @@ namespace Webservice
 
             //Commands.Run("netsh advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=in action=allow protocol=TCP localport=3579");
 
-            Commands.CommandRun("firewall.bat");
+            Commands.CommandRun("\\Content\\firewall.bat");
 
             //NetAclChecker.AddAddress("http://+:3579/");
 
