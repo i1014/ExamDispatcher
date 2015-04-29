@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 using System.Windows.Input;
 using DataModels;
 using DataModels.Questions;
@@ -67,6 +68,7 @@ namespace ExamDispatcher.ViewModel
             CurrentViewModel = MainViewModel._CreateExamViewModel;
             Exams = new ObservableCollection<Exam>();
             CreateExamCommand = new RelayCommand(() => ExecuteCreateCommand());
+
 
         }
 

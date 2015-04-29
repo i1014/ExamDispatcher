@@ -12,6 +12,7 @@
             <DockPanel Width="150" DockPanel.Dock="Left">
                 <Label DockPanel.Dock="Top">Exam Contents</Label>
                 <Button Content="Edit Exam Settings" DockPanel.Dock="Bottom"/>
+                <Button Content="Remove Question" DockPanel.Dock="Bottom"/>
                 <Button Content="Add Question" DockPanel.Dock="Bottom"/>
                 <ListBox SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Questions}"  DockPanel.Dock="Top" Width="150">
                     <ListBox.ItemTemplate>
@@ -25,14 +26,6 @@
 
             </UserControl>
 
-            <DockPanel DockPanel.Dock="Right"
-                       Width="75"
-                       LastChildFill="False">
-                <Button Command="{Binding EditCommand}" DockPanel.Dock="Top">Edit</Button>
-                <Button Command="{Binding AddCommand}" DockPanel.Dock="Top">Add</Button>
-                <Button Command="{Binding RemoveCommand}" DockPanel.Dock="Top">Remove</Button>
-                <Button Command="{Binding SaveCommand}" DockPanel.Dock="Bottom">Save Test</Button>
-            </DockPanel>
         </DockPanel>
     </DockPanel>
 </UserControl>
