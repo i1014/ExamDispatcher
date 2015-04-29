@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ExamDispatcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Exam Dispatcher" Height="350" Width="525"
+        Title="Exam Dispatcher" Height="580" Width="920"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         d:DesignHeight="300"
@@ -9,14 +9,20 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         mc:Ignorable="d">
     <DockPanel LastChildFill="True">
-        <DockPanel Width="75"
+        <DockPanel Width="100"
                    DockPanel.Dock="Left"
-                   LastChildFill="False"
+                   LastChildFill="True"
                    Margin="10">
-            <Button Command="{Binding HostExamCommand}" DockPanel.Dock="Top" Content="Host Exam"/>
-            <Button Command="{Binding CreateExamCommand}"  DockPanel.Dock="Top" Content="Create Exam"/>
-            <Button Command="{Binding EditExamCommand}" DockPanel.Dock="Top" Content="Edit Exam"/>
-            <Button DockPanel.Dock="Bottom" Content="Exit"/>
+            <Label DockPanel.Dock="Top">Exams</Label>
+            <Button Content="Change Folder" DockPanel.Dock="Bottom"/>
+            <Button Content="Create Exam" DockPanel.Dock="Bottom"/>
+            <ListBox Name="ExamListBox" Width="100" DockPanel.Dock="Top">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Exams}" ></Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
 
         <ContentControl Content="{Binding CurrentViewModel}" />
