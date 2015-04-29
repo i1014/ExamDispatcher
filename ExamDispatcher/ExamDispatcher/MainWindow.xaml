@@ -16,10 +16,10 @@
             <Label DockPanel.Dock="Top">Exams</Label>
             <Button Content="Change Folder" DockPanel.Dock="Bottom"/>
             <Button Content="Create Exam" DockPanel.Dock="Bottom"/>
-            <ListBox Name="ExamListBox" Width="100" DockPanel.Dock="Top">
+            <ListBox Name="ExamListBox" ItemsSource="{Binding Exams}" Width="100" DockPanel.Dock="Top">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Exams}" ></Label>
+                        <Label Content="{Binding ExamTitle}" ></Label>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

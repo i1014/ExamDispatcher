@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="IndexModule.cs" />
     <Compile Include="Modules\ExamRetrieval.cs" />
     <Compile Include="Modules\ExamSubmission.cs" />
     <Compile Include="NancyWebservice.cs" />
@@ -82,11 +81,6 @@
     <None Include="Views\index.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\nancy-logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModels\DataModels.csproj">

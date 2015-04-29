@@ -6,6 +6,7 @@ using DataModels.Questions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Utilities;
 
 namespace ExamDispatcher.ViewModel
 {
@@ -64,14 +65,15 @@ namespace ExamDispatcher.ViewModel
         {
             CurrentViewModel = MainViewModel._CreateExamViewModel;
             CreateExamCommand = new RelayCommand(() => ExecuteCreateCommand());
-            //ConfigurationManager.AppSettings["Path"] = "C:\\";
+            Exams = new ObservableCollection<Exam>();
+
             var config = ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetEntryAssembly().Location);
             
 
             
             var path = ConfigurationManager.AppSettings["Path"];
 
-            if (path != null)
+            if (path == null)
             {
                 var dialog = new CommonOpenFileDialog();
                 dialog.IsFolderPicker = true;
@@ -89,7 +91,15 @@ namespace ExamDispatcher.ViewModel
             }
 
             path = ConfigurationManager.AppSettings["Path"];
-            
+
+            var files = System.IO.Directory.GetFiles(path, "*.bin");
+            foreach (var file in files)
+            {
+                var serializer = new ObjectSerialization<Exam>(null, file);
+                var exam = serializer.DeSerialize();
+                if (exam != null)
+                    Exams.Add(exam);
+            }
         }
 
 
