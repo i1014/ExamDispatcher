@@ -1,11 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Configuration;
 using System.Windows.Input;
+using DataModels;
 using DataModels.Questions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.Win32;
+using Utilities;
 
 namespace ExamDispatcher.ViewModel
 {
@@ -27,23 +28,6 @@ namespace ExamDispatcher.ViewModel
                 RaisePropertyChanged("CurrentViewModel");
             }
         }
-
-        private ObservableCollection<Exam> _exams;
-
-        public ObservableCollection<Exam> Exams
-        {
-            get
-            {
-                return _exams;
-            }
-            set
-            {
-                if (_exams == value)
-                    return;
-                _exams = value;
-                RaisePropertyChanged("Exams");
-            }
-        }
         #endregion
 
         #region ViewModelRegistration
@@ -55,7 +39,56 @@ namespace ExamDispatcher.ViewModel
         public ICommand CreateExamCommand { get; private set; }
         private void ExecuteCreateCommand()
         {
-            //TODO Recreate an exam creation view.
+            _CreateExamViewModel.ExamGuid = Guid.NewGuid();
+
+            CurrentViewModel = MainViewModel._CreateExamViewModel;
+        }
+
+        public ICommand EditExamCommand { get; private set; }
+        private void ExecuteEditExamCommand()
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.DefaultExt = ".bin";
+            var viewModel = new CreateExamViewModel();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var fileName = openFileDialog.FileName;
+
+                var serializer = new ObjectSerialization<Exam>(null, fileName);
+                var exam = serializer.DeSerialize();
+
+                viewModel.ExamName = exam.ExamTitle;
+                viewModel.Questions = new ObservableCollection<BaseQuestion>(exam.QuestionList);
+                viewModel.ExamGuid = exam.ExamId;
+
+                CurrentViewModel = viewModel;
+
+            }
+
+        }
+
+        public ICommand HostExamCommand { get; private set; }
+        private void ExecuteHostCommand()
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.DefaultExt = ".bin";
+            var viewModel = new HostExamViewModel();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var fileName = openFileDialog.FileName;
+
+                var serializer = new ObjectSerialization<Exam>(null, fileName);
+                var exam = serializer.DeSerialize();
+
+                viewModel.Exam = exam;
+
+                CurrentViewModel = viewModel;
+
+            }
         }
         #endregion
 
@@ -64,32 +97,18 @@ namespace ExamDispatcher.ViewModel
         {
             CurrentViewModel = MainViewModel._CreateExamViewModel;
             CreateExamCommand = new RelayCommand(() => ExecuteCreateCommand());
-            //ConfigurationManager.AppSettings["Path"] = "C:\\";
-            var config = ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetEntryAssembly().Location);
-            
+            HostExamCommand = new RelayCommand(() => ExecuteHostCommand());
+            EditExamCommand = new RelayCommand(() => ExecuteEditExamCommand());
 
-            
-            var path = ConfigurationManager.AppSettings["Path"];
 
-            if (path != null)
-            {
-                var dialog = new CommonOpenFileDialog();
-                dialog.IsFolderPicker = true;
-                CommonFileDialogResult result = dialog.ShowDialog();
-                var file = dialog.FileName;
-                if (result.Equals(CommonFileDialogResult.Ok))
-                {
-                    config.AppSettings.Settings.Add("Path", file);
-                    config.Save(ConfigurationSaveMode.Modified);
-                }
-                else
-                {
-                    //TODO EXIT
-                }
-            }
-
-            path = ConfigurationManager.AppSettings["Path"];
-            
+            ////if (IsInDesignMode)
+            ////{
+            ////    // Code runs in Blend --> create design time data.
+            ////}
+            ////else
+            ////{
+            ////    // Code runs "for real"
+            ////}
         }
 
 
