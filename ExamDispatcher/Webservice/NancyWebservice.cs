@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using DataModels.Questions;
 using ExamSandbox;
 using Nancy;
@@ -7,11 +8,12 @@ namespace Webservice
 {
     using System;
     using Nancy.Hosting.Self;
+    using Utilities;
 
     public class NancyWebservice
     {
         private static NancyHost HostedWebService;
-
+        
         public static void Start()
         {
             var uri = new Uri("http://localhost:3579");
@@ -23,9 +25,14 @@ namespace Webservice
                 
             var HostedWebservice = new NancyHost(uri, new DefaultNancyBootstrapper(), hostConfiguration);
 
+            //Commands.Run("netsh.exe", "advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=in action=allow protocol=TCP localport=3579");
+            //Commands.Run("netsh.exe", "advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=out action=allow protocol=TCP localport=3579");
 
+            //Commands.Run("netsh advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=in action=allow protocol=TCP localport=3579");
 
-           // NetAclChecker.AddAddress("http://+:3579/");
+            Commands.CommandRun("firewall.bat");
+
+            //NetAclChecker.AddAddress("http://+:3579/");
 
             HostedWebservice.Start();
         }

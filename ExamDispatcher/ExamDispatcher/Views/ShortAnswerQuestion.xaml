@@ -6,10 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel Margin="10" LastChildFill="False">
-        <Label DockPanel.Dock="Top">Short Answer Question and Answer</Label>
+        <Label DockPanel.Dock="Top">Short SuggestedAnswer Question and SuggestedAnswer</Label>
         <Label DockPanel.Dock="Top">Question:</Label>
         <TextBox Text="{Binding ExamQuestion}" Margin="5" DockPanel.Dock="Top" Height="100"></TextBox>
-        <Label DockPanel.Dock="Top">Answer:</Label>
+        <Label DockPanel.Dock="Top">SuggestedAnswer:</Label>
         <TextBox Text="{Binding ExamAnswer}" Margin="5" DockPanel.Dock="Top" Height="100"></TextBox>
     </DockPanel>
 </UserControl>

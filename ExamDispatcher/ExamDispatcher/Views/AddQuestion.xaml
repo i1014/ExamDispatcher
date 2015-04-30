@@ -16,7 +16,7 @@
         <DockPanel DockPanel.Dock="Top" LastChildFill="True">
             <Label DockPanel.Dock="Top">Question Creation</Label>
             <Button Command="{Binding MultipleChoiceCommand}" Width="200" DockPanel.Dock="Top" Content="Multiple Choice" />
-            <Button Command="{Binding ShortAnswerCommand}" Width="200" DockPanel.Dock="Top" Content="Short Answer" />
+            <Button Command="{Binding ShortAnswerCommand}" Width="200" DockPanel.Dock="Top" Content="Short SuggestedAnswer" />
             <Button Command="{Binding TrueFalseCommand}" Width="200" DockPanel.Dock="Top" Content="True or False" />
             <Button Command="{Binding MatchingCommand}" Width="200" DockPanel.Dock="Top" Content="Matching" />
             <Button Command="{Binding AllThatApplyCommand}" Width="200" DockPanel.Dock="Top" Content="All that Apply" />

@@ -46,9 +46,10 @@ namespace ExamDispatcher.Model
                 case 0  :
                     return "An error occured";
                 case 10 :
-                    return "Answer not entered";
+                    return "SuggestedAnswer not entered";
             }
             return null;
         }
+
     }
 }

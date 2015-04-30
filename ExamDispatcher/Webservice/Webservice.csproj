@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Content\firewall.bat" />
     <None Include="packages.config" />
     <None Include="Views\index.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -81,6 +82,10 @@
     <ProjectReference Include="..\ExamSandbox\ExamSandbox.csproj">
       <Project>{cf8616ac-9895-47cf-8596-2f08ac28eed4}</Project>
       <Name>ExamSandbox</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{d1047371-d916-4754-9f10-c1ea2b1042d1}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

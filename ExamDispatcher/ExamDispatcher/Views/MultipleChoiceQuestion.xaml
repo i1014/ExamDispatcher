@@ -12,13 +12,13 @@
         <DockPanel DockPanel.Dock="Left" LastChildFill="False">
             <Button Command="{Binding AddOptionCommand}" DockPanel.Dock="Top">Add Option</Button>
             <Button Command="{Binding RemoveOptionCommand}" DockPanel.Dock="Top">Remove Option</Button>
-            <Button Command="{Binding SetAnswerCommand}" DockPanel.Dock="Top">Set As Answer</Button>
+            <Button Command="{Binding SetAnswerCommand}" DockPanel.Dock="Top">Set As SuggestedAnswer</Button>
         </DockPanel>
         <DockPanel DockPanel.Dock="Right">
             <Label DockPanel.Dock="Top">Option:</Label>
             <TextBox Margin ="5" Text="{Binding Option}" DockPanel.Dock="Top"></TextBox>
             <Label DockPanel.Dock="Bottom" Content="{Binding Answer}"></Label>
-            <Label DockPanel.Dock="Bottom">Answer (An answer is required)</Label>
+            <Label DockPanel.Dock="Bottom">SuggestedAnswer (An SuggestedAnswer is required)</Label>
             <ListBox DockPanel.Dock="Top" SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Options}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

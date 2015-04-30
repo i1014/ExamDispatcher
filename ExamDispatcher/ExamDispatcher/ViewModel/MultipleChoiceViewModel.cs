@@ -50,7 +50,7 @@ namespace ExamDispatcher.ViewModel
                 if (_Answer == value)
                     return;
                 _Answer = value;
-                RaisePropertyChanged("Answer");
+                RaisePropertyChanged("SuggestedAnswer");
             }
         }
 
