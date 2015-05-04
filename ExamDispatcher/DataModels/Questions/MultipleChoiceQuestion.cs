@@ -8,10 +8,9 @@ namespace DataModels.Questions
     public class MultipleChoiceQuestion : BaseQuestion
     {
         public string Question { get; private set; }
-        public Guid QuestionGuid { get; private set; }
+        
         public List<MultipleChoiceOption> Options { get; private set; } 
         public string SuggestedAnswer { get; private set; }
-        public QuestionType Type { get; private set; }
 
         public MultipleChoiceQuestion()
         {

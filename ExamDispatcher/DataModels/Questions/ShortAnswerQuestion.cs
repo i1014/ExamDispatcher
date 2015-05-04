@@ -7,9 +7,7 @@ namespace DataModels.Questions
     public class ShortAnswerQuestion : BaseQuestion
     {
         public string Question { get; private set; }
-        public Guid QuestionGuid { get; private set; }
         public string Answer { get; private set; }
-        public QuestionType Type { get; private set; }
 
         public ShortAnswerQuestion()
         {

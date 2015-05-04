@@ -9,7 +9,6 @@ namespace DataModels.Questions
         public string Question { get; private set; }
         public List<string> OptionsList { get; private set; }
         public List<string> AnswerList { get; private set; }
-        public QuestionType Type { get; private set; }
 
         public AllThatApplyQuestion()
         {

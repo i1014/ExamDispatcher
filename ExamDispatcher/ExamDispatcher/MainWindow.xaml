@@ -16,7 +16,8 @@
             <Label DockPanel.Dock="Top">Exams</Label>
             <Button Content="Change Folder" DockPanel.Dock="Bottom"/>
             <Button Content="Create Exam" DockPanel.Dock="Bottom"/>
-            <ListBox Name="ExamListBox" ItemsSource="{Binding Exams}" Width="100" DockPanel.Dock="Top">
+            <Button Command="{Binding SelectExamCommand}" Content="Select Exam" DockPanel.Dock="Bottom"/>
+            <ListBox Name="ExamListBox" SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Exams}" Width="100" DockPanel.Dock="Top">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding ExamTitle}" ></Label>

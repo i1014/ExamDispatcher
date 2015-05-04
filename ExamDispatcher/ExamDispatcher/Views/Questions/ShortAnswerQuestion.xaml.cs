@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExamDispatcher.Views
+namespace ExamDispatcher.Views.Questions
 {
     /// <summary>
-    /// Interaction logic for MultipleChoiceQuestion.xaml
+    /// Interaction logic for ShortAnswerQuestion.xaml
     /// </summary>
-    public partial class MultipleChoiceQuestion : UserControl
+    public partial class ShortAnswerQuestion : UserControl
     {
-        public MultipleChoiceQuestion()
+        public ShortAnswerQuestion()
         {
             InitializeComponent();
         }

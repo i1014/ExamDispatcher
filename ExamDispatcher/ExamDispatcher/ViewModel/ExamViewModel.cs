@@ -9,16 +9,36 @@ using System.Windows.Input;
 using DataModels;
 using DataModels.Questions;
 using ExamDispatcher.Model;
+using ExamDispatcher.ViewModel.Questions;
 using ExamDispatcher.Views;
 using Microsoft.Win32;
 using Utilities;
 
 namespace ExamDispatcher.ViewModel
 {
-    public class CreateExamViewModel : ViewModelBase
+    public class ExamViewModel : ViewModelBase
     {
 
         #region Properties and Fields
+
+        private ViewModelBase parentViewModel;
+
+        private ViewModelBase _currentViewModel;
+        public ViewModelBase CurrentViewModel
+        {
+            get
+            {
+                return _currentViewModel;
+            }
+            set
+            {
+                if (_currentViewModel == value)
+                    return;
+                _currentViewModel = value;
+                RaisePropertyChanged("CurrentViewModel");
+            }
+        }
+
         private string _ExamName;
         public string ExamName
         {
@@ -74,37 +94,20 @@ namespace ExamDispatcher.ViewModel
         #endregion
 
         #region ViewModel Registration
-        readonly static AddQuestionViewModel _AddQuestionViewModel = new AddQuestionViewModel();
+
         #endregion
 
         #region Commands
         public ICommand EditCommand { get; private set; }
         private void ExecuteEditCommand()
         {
-            
+            CurrentViewModel = QuestionTranslation.EditViewModelFromEnum(SelectedItem.Type, SelectedItem, this);
         }
 
         public ICommand AddCommand { get; private set; }
         private void ExecuteAddCommand()
         {
-            var w = new Window {Content = new AddQuestionViewModel()};
-            w.Height = 525;
-            w.Width = 320;
-            DataStore.WindowRegistration = w;
-            w.ShowDialog();
 
-            var tmp = DataStore.AddedQuestion;
-            var error = DataStore.ErrorCode;
-
-            if (error == 0)
-            {
-                if(tmp != null)
-                    Questions.Add(tmp);
-            }
-            else
-            {
-                //TODO Alert user with dialog and error code translation.
-            }
 
         }
 
@@ -132,15 +135,49 @@ namespace ExamDispatcher.ViewModel
                 serializer.Serialize();
             }
         }
+
+        public ICommand EditSettingsCommand { get; private set; }
+        private void ExecuteEditSettingsCommand()
+        {
+            
+        }
         #endregion
 
-        public CreateExamViewModel()
+        public void UpdateQuestion(BaseQuestion baseQuestion)
+        {
+            var original = from x in Questions
+                where x.QuestionGuid.Equals(baseQuestion.QuestionGuid)
+                select x;
+
+            Questions.Remove(original.First());
+            Questions.Add(baseQuestion);
+        }
+
+        public ExamViewModel(Exam exam, ViewModelBase parent)
+        {
+            parentViewModel = parent;
+
+            _Questions = new ObservableCollection<BaseQuestion>(new List<BaseQuestion>());
+
+            AddCommand = new RelayCommand(() => ExecuteAddCommand());
+            EditCommand = new RelayCommand(() => ExecuteEditCommand());
+            RemoveCommand = new RelayCommand(() => ExecuteRemoveCommand());
+            EditSettingsCommand = new RelayCommand(() => ExecuteEditSettingsCommand());
+            SaveCommand = new RelayCommand(() => ExecuteSaveCommand());
+
+            ExamName = exam.ExamTitle;
+            ExamGuid = exam.ExamId;
+            Questions = new ObservableCollection<BaseQuestion>(exam.QuestionList);
+        }
+
+        public ExamViewModel()
         {
             _Questions = new ObservableCollection<BaseQuestion>(new List<BaseQuestion>());
 
-            EditCommand = new RelayCommand(() => ExecuteEditCommand());
             AddCommand = new RelayCommand(() => ExecuteAddCommand());
+            EditCommand = new RelayCommand(() => ExecuteEditCommand());
             RemoveCommand = new RelayCommand(() => ExecuteRemoveCommand());
+            EditSettingsCommand = new RelayCommand(() => ExecuteEditSettingsCommand());
             SaveCommand = new RelayCommand(() => ExecuteSaveCommand());
 
         }

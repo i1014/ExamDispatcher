@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ExamDispatcher.Views.Questions.ExamSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="580" d:DesignWidth="770">
+    <DockPanel Margin="10" LastChildFill="false">
+        <Label DockPanel.Dock="Top" FontSize="25" HorizontalAlignment="Center">Exam Settings</Label>
+        <DockPanel DockPanel.Dock="Top">
+            <Label DockPanel.Dock="Left" HorizontalAlignment="Center">Exam Name</Label>
+            <TextBox Text="{Binding ExamName}" DockPanel.Dock="Left"></TextBox>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+            <Label>Time Limit (minutes) </Label>
+            <TextBox Margin="5,5,0,5" Width="50" Text="{Binding Minutes}" />
+            <Button Margin="5,5,0,5" Content="˄" Width="20" Command="{Binding UpMinCommand}" />
+            <Button Margin="0,5,0,5"  Content="˅" Width="20" Command="{Binding DownMinCommand}"/>
+        </StackPanel>
+
+        <Button Command="{Binding SaveExamSettingsCommand}" DockPanel.Dock="Bottom">Save Exam Settings</Button>
+    </DockPanel>
+</UserControl>

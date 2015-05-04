@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExamDispatcher.Views
+namespace ExamDispatcher.Views.Questions
 {
     /// <summary>
-    /// Interaction logic for AddQuestion.xaml
+    /// Interaction logic for ExamSettings.xaml
     /// </summary>
-    public partial class AddQuestion : UserControl
+    public partial class ExamSettings : UserControl
     {
-        public AddQuestion()
+        public ExamSettings()
         {
             InitializeComponent();
         }

@@ -1,22 +1,21 @@
 ﻿<Application x:Class="ExamDispatcher.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ExamDispatcher.ViewModel"
-             xmlns:views="clr-namespace:ExamDispatcher.Views">
+             xmlns:views="clr-namespace:ExamDispatcher.Views"
+             xmlns:questionViews="clr-namespace:ExamDispatcher.Views.Questions"
+             xmlns:question="clr-namespace:ExamDispatcher.ViewModel.Questions">
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:ExamDispatcher.ViewModel" />
-        <DataTemplate DataType="{x:Type vm:CreateExamViewModel}">
+        <DataTemplate DataType="{x:Type vm:ExamViewModel}">
             <views:CreateExam />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:HostExamViewModel}">
             <views:HostExam />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:AddQuestionViewModel}">
-            <views:AddQuestion />
+        <DataTemplate DataType="{x:Type question:ShortAnswerViewModel}">
+            <questionViews:ShortAnswerQuestion />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:ShortAnswerViewModel}">
-            <views:ShortAnswerQuestion />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:MultipleChoiceViewModel}">
-            <views:MultipleChoiceQuestion />
+        <DataTemplate DataType="{x:Type question:ExamSettingsViewModel}">
+            <questionViews:ExamSettings />
         </DataTemplate>
     </Application.Resources>
 </Application>
