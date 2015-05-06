@@ -41,7 +41,7 @@ namespace Webservice.Modules
                     //maResList.Add(new MatchingQuestionResponse(q.Question, q.QuestionGuid, q.Type));
                 }
 
-                long time = exam.Minutes*1000;
+                long time = exam.Minutes*1000*60;
 
 
                 var res = new ExamResponse(exam.ExamTitle, exam.ExamId, time, saResList, mcResList, maResList);

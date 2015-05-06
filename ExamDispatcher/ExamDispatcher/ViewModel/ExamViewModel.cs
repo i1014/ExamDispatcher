@@ -102,6 +102,9 @@ namespace ExamDispatcher.ViewModel
         public ICommand EditCommand { get; private set; }
         private void ExecuteEditCommand()
         {
+            if (SelectedItem == null)
+                return;
+
             CurrentViewModel = QuestionTranslation.EditViewModelFromEnum(SelectedItem.Type, SelectedItem, this);
         }
 
