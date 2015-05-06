@@ -23,18 +23,18 @@ namespace Webservice
                 UrlReservations = new UrlReservations() {CreateAutomatically = true}
             };
                 
-            var HostedWebservice = new NancyHost(uri, new DefaultNancyBootstrapper(), hostConfiguration);
+            HostedWebService = new NancyHost(uri, new DefaultNancyBootstrapper(), hostConfiguration);
 
             //Commands.Run("netsh.exe", "advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=in action=allow protocol=TCP localport=3579");
             //Commands.Run("netsh.exe", "advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=out action=allow protocol=TCP localport=3579");
 
             //Commands.Run("netsh advfirewall firewall add rule name=\"ExamDispatcher 3579\" dir=in action=allow protocol=TCP localport=3579");
 
-            //Commands.CommandRun("\\Content\\firewall.bat");
+            Commands.CommandRun("Content\\firewall.bat");
 
             //NetAclChecker.AddAddress("http://+:3579/");
 
-            HostedWebservice.Start();
+            HostedWebService.Start();
         }
 
         public static void Stop()
