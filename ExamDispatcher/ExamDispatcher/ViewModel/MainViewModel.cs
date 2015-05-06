@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using System.Windows.Input;
 using DataModels;
 using DataModels.Questions;
+using ExamDispatcher.ViewModel.Questions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
@@ -13,6 +15,10 @@ namespace ExamDispatcher.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        #region Variables for internal use
+        public string Path { get; private set; }
+        #endregion  
+
         #region Properties and Fields
 
         private ViewModelBase _currentViewModel;
@@ -62,7 +68,7 @@ namespace ExamDispatcher.ViewModel
 
         #region ViewModelRegistration
 
-        private static readonly ExamViewModel _CreateExamViewModel = new ExamViewModel();
+        private static readonly ExamViewModel _examViewModel = new ExamViewModel();
         private static readonly HostExamViewModel _HostExamViewModel = new HostExamViewModel();
 
         #endregion
@@ -70,34 +76,48 @@ namespace ExamDispatcher.ViewModel
         #region Commands
 
         public ICommand CreateExamCommand { get; private set; }
-
         private void ExecuteCreateCommand()
         {
-            _CreateExamViewModel.ExamGuid = Guid.NewGuid();
-
-            CurrentViewModel = MainViewModel._CreateExamViewModel;
+            _examViewModel.ExamGuid = Guid.NewGuid();
+            CurrentViewModel = new ExamViewModel(new Exam("",Guid.NewGuid(),new List<BaseQuestion>(),0), this);
         }
 
         public ICommand SelectExamCommand { get; private set; }
-
         private void ExecuteSelectExamCommand()
         {
+            if (SelectedItem == null)
+                return;
+
             var create = new ExamViewModel(SelectedItem, this);
             CurrentViewModel = create;
         }
 
+        public ICommand RefreshCommand { get; private set; }
+        private void ExecuteRefreshCommand()
+        {
+            RefreshExams(Path);
+        }
+
+        public ICommand ChangeFolderCommand { get; private set; }
+        private void ExecuteChangeFolderCommand()
+        {
+            Path = GetFolder();
+            RefreshExams(Path);
+        }
         #endregion
 
 
         public MainViewModel()
         {
-            CurrentViewModel = MainViewModel._CreateExamViewModel;
+            CurrentViewModel = new SplashViewModel();
             Exams = new ObservableCollection<Exam>();
             CreateExamCommand = new RelayCommand(() => ExecuteCreateCommand());
             SelectExamCommand = new RelayCommand(() => ExecuteSelectExamCommand());
+            RefreshCommand = new RelayCommand(() => ExecuteRefreshCommand());
+            ChangeFolderCommand = new RelayCommand(() => ExecuteChangeFolderCommand());
 
-            var path = GetFolder();
-            RefreshExams(path);
+            Path = GetFolder();
+            RefreshExams(Path);
 
         }
 
@@ -105,7 +125,8 @@ namespace ExamDispatcher.ViewModel
 
         private string GetFolder()
         {
-            FolderBrowserDialog folderPicker = new FolderBrowserDialog();
+            var folderPicker = new FolderBrowserDialog();
+            folderPicker.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); ;
             if (folderPicker.ShowDialog() == DialogResult.OK)
             {
 
@@ -119,6 +140,8 @@ namespace ExamDispatcher.ViewModel
 
         private void RefreshExams(string path)
         {
+            Exams = new ObservableCollection<Exam>();
+
             var files = System.IO.Directory.GetFiles(path, "*.bin");
             foreach (var file in files)
             {

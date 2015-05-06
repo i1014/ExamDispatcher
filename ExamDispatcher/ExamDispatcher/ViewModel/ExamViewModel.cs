@@ -21,7 +21,8 @@ namespace ExamDispatcher.ViewModel
 
         #region Properties and Fields
 
-        private ViewModelBase parentViewModel;
+        private int ExamDuration;
+        private MainViewModel parentViewModel;
 
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -107,7 +108,7 @@ namespace ExamDispatcher.ViewModel
         public ICommand AddCommand { get; private set; }
         private void ExecuteAddCommand()
         {
-
+            CurrentViewModel = new AddQuestionViewModel(this);
 
         }
 
@@ -121,7 +122,7 @@ namespace ExamDispatcher.ViewModel
         private void ExecuteSaveCommand()
         {
             var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog.InitialDirectory = parentViewModel.Path;//Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             saveFileDialog.FileName = ExamName;
             saveFileDialog.DefaultExt = ".bin";
 
@@ -130,7 +131,7 @@ namespace ExamDispatcher.ViewModel
                 var fileName = saveFileDialog.FileName;
                 if (ExamGuid.Equals(new Guid("00000000-0000-0000-0000-000000000000")))
                     ExamGuid = Guid.NewGuid();
-                var exam = new Exam(ExamName, ExamGuid, Questions.ToList());
+                var exam = new Exam(ExamName, ExamGuid, Questions.ToList(), ExamDuration);
                 var serializer = new ObjectSerialization<Exam>(exam, fileName);
                 serializer.Serialize();
             }
@@ -139,23 +140,46 @@ namespace ExamDispatcher.ViewModel
         public ICommand EditSettingsCommand { get; private set; }
         private void ExecuteEditSettingsCommand()
         {
-            
+            CurrentViewModel = new ExamSettingsViewModel(this, ExamName, ExamDuration, ExamGuid.ToString());
         }
         #endregion
 
+
+        #region Updates
         public void UpdateQuestion(BaseQuestion baseQuestion)
         {
             var original = from x in Questions
                 where x.QuestionGuid.Equals(baseQuestion.QuestionGuid)
                 select x;
 
-            Questions.Remove(original.First());
-            Questions.Add(baseQuestion);
+            if (!original.Any())
+            {
+                Questions.Add(baseQuestion);
+            }
+            else
+            {
+                Questions.Remove(original.First());
+                Questions.Add(baseQuestion);
+                
+            }
         }
 
-        public ExamViewModel(Exam exam, ViewModelBase parent)
+        public void UpdateExamSettings(string examName, int length)
+        {
+            ExamName = examName;
+            ExamDuration = length;
+        }
+
+        public void CreateNewQuestion(BaseQuestionViewModel viewModel)
+        {
+            CurrentViewModel = viewModel;
+        }
+        #endregion
+
+        public ExamViewModel(Exam exam, MainViewModel parent)
         {
             parentViewModel = parent;
+
 
             _Questions = new ObservableCollection<BaseQuestion>(new List<BaseQuestion>());
 
@@ -167,11 +191,16 @@ namespace ExamDispatcher.ViewModel
 
             ExamName = exam.ExamTitle;
             ExamGuid = exam.ExamId;
+            ExamDuration = exam.Minutes;
             Questions = new ObservableCollection<BaseQuestion>(exam.QuestionList);
+            CurrentViewModel = new ExamSettingsViewModel(this, ExamName, ExamDuration, ExamGuid.ToString());
         }
 
         public ExamViewModel()
         {
+            CurrentViewModel = new SplashViewModel();
+            
+
             _Questions = new ObservableCollection<BaseQuestion>(new List<BaseQuestion>());
 
             AddCommand = new RelayCommand(() => ExecuteAddCommand());

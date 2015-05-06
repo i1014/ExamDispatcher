@@ -13,7 +13,7 @@ namespace WebserviceTest
         public void TestAddExamToSandbox()
         {
             var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-            var exam = new Exam("Title", guid, new List<BaseQuestion>());
+            var exam = new Exam("Title", guid, new List<BaseQuestion>(), 0);
 
             Sandbox.AddExamToSandbox(exam);
 
@@ -24,7 +24,7 @@ namespace WebserviceTest
         public void TestRemoveExam()
         {
             var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-            var exam = new Exam("Title", guid, new List<BaseQuestion>());
+            var exam = new Exam("Title", guid, new List<BaseQuestion>(), 0);
 
             Sandbox.AddExamToSandbox(exam);
 
@@ -37,7 +37,7 @@ namespace WebserviceTest
         public void TestStartExam()
         {
             var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-            var exam = new Exam("Title", guid, new List<BaseQuestion>());
+            var exam = new Exam("Title", guid, new List<BaseQuestion>(), 0);
 
             Sandbox.AddExamToSandbox(exam);
 
@@ -50,7 +50,7 @@ namespace WebserviceTest
         public void TestStopExam()
         {
             var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-            var exam = new Exam("Title", guid, new List<BaseQuestion>());
+            var exam = new Exam("Title", guid, new List<BaseQuestion>(), 0);
 
             Sandbox.AddExamToSandbox(exam);
 
@@ -64,7 +64,7 @@ namespace WebserviceTest
         public void TestGetActiveExams()
         {
             var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-            var exam = new Exam("Title", guid, new List<BaseQuestion>());
+            var exam = new Exam("Title", guid, new List<BaseQuestion>(), 0);
 
             Sandbox.AddExamToSandbox(exam);
 
@@ -77,7 +77,7 @@ namespace WebserviceTest
         public void TestGetAvailableExams()
         {
             var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-            var exam = new Exam("Title", guid, new List<BaseQuestion>());
+            var exam = new Exam("Title", guid, new List<BaseQuestion>(), 0);
 
             Sandbox.AddExamToSandbox(exam);
 

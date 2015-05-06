@@ -13,11 +13,11 @@
         </DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
             <Label>Time Limit (minutes) </Label>
-            <TextBox Margin="5,5,0,5" Width="50" Text="{Binding Minutes}" />
+            <TextBox Margin="5,5,0,5" Width="50" Text="{Binding Length}" PreviewTextInput="UIElement_OnPreviewTextInput"/>
             <Button Margin="5,5,0,5" Content="˄" Width="20" Command="{Binding UpMinCommand}" />
             <Button Margin="0,5,0,5"  Content="˅" Width="20" Command="{Binding DownMinCommand}"/>
         </StackPanel>
-
-        <Button Command="{Binding SaveExamSettingsCommand}" DockPanel.Dock="Bottom">Save Exam Settings</Button>
+        <Label Content="{Binding ExamGuid}" DockPanel.Dock="Top"/>
+        <Button Command="{Binding SaveCommand}" DockPanel.Dock="Bottom">Save Exam Settings</Button>
     </DockPanel>
 </UserControl>

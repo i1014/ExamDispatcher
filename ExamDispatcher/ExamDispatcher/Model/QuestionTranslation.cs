@@ -26,7 +26,7 @@ namespace ExamDispatcher.Model
 
                     break;
                 case QuestionType.MultipleChoice :
-                    //return new MultipleChoiceViewModel();
+                    return new MultipleChoiceViewModel(parent as ExamViewModel, question as MultipleChoiceQuestion);
                 case QuestionType.ShortAnswer :
                     return new ShortAnswerViewModel(question as ShortAnswerQuestion, parent);
             }

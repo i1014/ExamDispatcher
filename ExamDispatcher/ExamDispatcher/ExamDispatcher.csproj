@@ -81,12 +81,16 @@
     </ApplicationDefinition>
     <Compile Include="Model\DataStore.cs" />
     <Compile Include="Model\QuestionTranslation.cs" />
+    <Compile Include="ViewModel\Questions\AddQuestionViewModel.cs" />
     <Compile Include="ViewModel\Questions\BaseQuestionViewModel.cs" />
     <Compile Include="ViewModel\ExamViewModel.cs" />
     <Compile Include="ViewModel\HostExamViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Questions\ExamSettingsViewModel.cs" />
+    <Compile Include="ViewModel\Questions\MatchingViewModel.cs" />
+    <Compile Include="ViewModel\Questions\MultipleChoiceViewModel.cs" />
     <Compile Include="ViewModel\Questions\ShortAnswerViewModel.cs" />
+    <Compile Include="ViewModel\SplashViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ExamView.xaml.cs">
       <DependentUpon>ExamView.xaml</DependentUpon>
@@ -94,11 +98,23 @@
     <Compile Include="Views\HostExam.xaml.cs">
       <DependentUpon>HostExam.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Questions\AddQuestion.xaml.cs">
+      <DependentUpon>AddQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Questions\ExamSettings.xaml.cs">
       <DependentUpon>ExamSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Questions\MatchingQuestion.xaml.cs">
+      <DependentUpon>MatchingQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Questions\MultipleChoice.xaml.cs">
+      <DependentUpon>MultipleChoice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Questions\ShortAnswerQuestion.xaml.cs">
       <DependentUpon>ShortAnswerQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -120,11 +136,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Questions\AddQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Questions\ExamSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Questions\MatchingQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Questions\MultipleChoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Questions\ShortAnswerQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Splash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

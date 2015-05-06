@@ -12,9 +12,10 @@ namespace DataModels.Response
         public string ExamTitle { get; private set; }
         public Guid ExamGuid { get; private set; }
         public long TestDuration { get; private set; }
-        public List<ShortAnswerQuestion> ShortAnswerQuestions { get; private set; }
-        public List<MultipleChoiceQuestion> MultipleChoiceQuetions { get; private set; }
-
+        public List<ShortAnswerQuestionResponse> ShortAnswerQuestions { get; private set; }
+        public List<MultipleChoiceResponse> MultipleChoiceQuetions { get; private set; }
+        public List<MatchingQuestionResponse> MatchingQuestions { get; private set; }
+ 
 
     }
 }

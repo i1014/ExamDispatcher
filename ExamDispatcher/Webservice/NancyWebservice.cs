@@ -52,7 +52,7 @@ namespace Webservice
                 host.Start();
 
                 var guid = new Guid("e28b7426-c328-49fc-b3c2-e9f225b534e9");
-                var exam = new Exam("Title", guid, new List<BaseQuestion>());
+                var exam = new Exam("Title", guid, new List<BaseQuestion>(), 10);
 
                 Sandbox.AddExamToSandbox(exam);
 

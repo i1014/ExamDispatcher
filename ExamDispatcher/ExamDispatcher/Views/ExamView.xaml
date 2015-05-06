@@ -12,10 +12,10 @@
             <DockPanel Width="150" DockPanel.Dock="Left">
                 <Label DockPanel.Dock="Top">Exam Contents</Label>
                 <Button Command="{Binding SaveCommand}" Content="Save Exam" DockPanel.Dock="Bottom"/>
-                <Button Content="Edit Exam Settings" DockPanel.Dock="Bottom"/>
-                <Button Content="Remove Question" DockPanel.Dock="Bottom"/>
+                <Button Command="{Binding EditSettingsCommand}" Content="Edit Exam Settings" DockPanel.Dock="Bottom"/>
+                <Button Command="{Binding RemoveCommand}" Content="Remove Question" DockPanel.Dock="Bottom"/>
                 <Button Command="{Binding EditCommand}" Content="Edit Question" DockPanel.Dock="Bottom"/>
-                <Button Content="Add Question" DockPanel.Dock="Bottom"/>
+                <Button Command="{Binding AddCommand}"  Content="Add Question" DockPanel.Dock="Bottom"/>
                 <ListBox SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Questions}"  DockPanel.Dock="Top" Width="150">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -23,6 +23,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                
             </DockPanel>
             
             <ContentControl DockPanel.Dock="Right" Content="{Binding CurrentViewModel}" />

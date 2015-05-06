@@ -14,8 +14,9 @@
                    LastChildFill="True"
                    Margin="10">
             <Label DockPanel.Dock="Top">Exams</Label>
-            <Button Content="Change Folder" DockPanel.Dock="Bottom"/>
-            <Button Content="Create Exam" DockPanel.Dock="Bottom"/>
+            <Button Command="{Binding ChangeFolderCommand}" Content="Change Folder" DockPanel.Dock="Bottom"/>
+            <Button Command="{Binding RefreshCommand}" Content="Refresh Folder" DockPanel.Dock="Bottom"/>
+            <Button Command="{Binding CreateExamCommand}" Content="Create Exam" DockPanel.Dock="Bottom"/>
             <Button Command="{Binding SelectExamCommand}" Content="Select Exam" DockPanel.Dock="Bottom"/>
             <ListBox Name="ExamListBox" SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Exams}" Width="100" DockPanel.Dock="Top">
                 <ListBox.ItemTemplate>

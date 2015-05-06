@@ -8,6 +8,9 @@
         <DataTemplate DataType="{x:Type vm:ExamViewModel}">
             <views:CreateExam />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SplashViewModel}">
+            <views:Splash />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:HostExamViewModel}">
             <views:HostExam />
         </DataTemplate>
@@ -16,6 +19,15 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type question:ExamSettingsViewModel}">
             <questionViews:ExamSettings />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type question:AddQuestionViewModel}">
+            <questionViews:AddQuestion />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type question:MultipleChoiceViewModel}">
+            <questionViews:MultipleChoice />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type question:MatchingViewModel}">
+            <questionViews:MatchingQuestion />
         </DataTemplate>
     </Application.Resources>
 </Application>

@@ -55,6 +55,9 @@
     <Compile Include="Request\SubmitAnswersRequest.cs" />
     <Compile Include="Questions\ShortAnswerQuestion.cs" />
     <Compile Include="Response\ExamResponse.cs" />
+    <Compile Include="Response\MatchingQuestionResponse.cs" />
+    <Compile Include="Response\MultipleChoiceResponse.cs" />
+    <Compile Include="Response\ShortAnswerQuestionResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
