@@ -187,6 +187,9 @@ namespace ExamDispatcher.ViewModel.Questions
                 options.Add(opt);
             }
 
+            if (QuestionGuid.Equals(new Guid("00000000-0000-0000-0000-000000000000")))
+                QuestionGuid = Guid.NewGuid();
+
             var question = new MultipleChoiceQuestion(Question, QuestionGuid, Answer, options);
 
             return question;

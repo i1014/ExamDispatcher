@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using DataModels;
 using DataModels.Questions;
+using Webservice;
 
 namespace ExamDispatcher.Model
 {
     public static class DataStore
     {
+        public static NancyWebservice Webservice { get; set; }
+
+        static DataStore()
+        {
+            Webservice = new NancyWebservice();
+        }
+
         private static BaseQuestion _addedQuestion { get; set; }
         public static BaseQuestion AddedQuestion
         {

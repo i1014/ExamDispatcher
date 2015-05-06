@@ -5,11 +5,14 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using DataModels;
 using DataModels.Questions;
+using ExamDispatcher.Model;
 using ExamDispatcher.ViewModel.Questions;
+using ExamSandbox;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using Utilities;
+using Webservice;
 
 namespace ExamDispatcher.ViewModel
 {
@@ -69,7 +72,7 @@ namespace ExamDispatcher.ViewModel
         #region ViewModelRegistration
 
         private static readonly ExamViewModel _examViewModel = new ExamViewModel();
-        private static readonly HostExamViewModel _HostExamViewModel = new HostExamViewModel();
+        private static readonly HostExamViewModel _hostExamViewModel = new HostExamViewModel();
 
         #endregion
 
@@ -104,6 +107,13 @@ namespace ExamDispatcher.ViewModel
             Path = GetFolder();
             RefreshExams(Path);
         }
+
+        public ICommand HostExamCommand { get; private set; }
+        private void ExecuteHostExamCommand()
+        {
+            _hostExamViewModel.Exam = SelectedItem;
+            CurrentViewModel = _hostExamViewModel;
+        }
         #endregion
 
 
@@ -115,9 +125,15 @@ namespace ExamDispatcher.ViewModel
             SelectExamCommand = new RelayCommand(() => ExecuteSelectExamCommand());
             RefreshCommand = new RelayCommand(() => ExecuteRefreshCommand());
             ChangeFolderCommand = new RelayCommand(() => ExecuteChangeFolderCommand());
+            HostExamCommand = new RelayCommand(() => ExecuteHostExamCommand());
 
-            Path = GetFolder();
-            RefreshExams(Path);
+            if (!this.IsInDesignMode)
+            {
+                Path = GetFolder();
+                RefreshExams(Path);
+                
+            }
+
 
         }
 

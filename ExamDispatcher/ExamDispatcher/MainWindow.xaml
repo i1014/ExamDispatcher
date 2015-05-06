@@ -18,6 +18,7 @@
             <Button Command="{Binding RefreshCommand}" Content="Refresh Folder" DockPanel.Dock="Bottom"/>
             <Button Command="{Binding CreateExamCommand}" Content="Create Exam" DockPanel.Dock="Bottom"/>
             <Button Command="{Binding SelectExamCommand}" Content="Select Exam" DockPanel.Dock="Bottom"/>
+            <Button Command="{Binding HostExamCommand}" Content="Host Exam" DockPanel.Dock="Bottom"/>
             <ListBox Name="ExamListBox" SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Exams}" Width="100" DockPanel.Dock="Top">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
